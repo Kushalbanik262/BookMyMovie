@@ -1,0 +1,32 @@
+<div class="header">
+    <div class="d-flex justify-content-center"><span style="font-weight: bold;" class="h1">
+        <mat-icon>account_circle</mat-icon>
+        Hi {{user.firstName}}!</span></div>
+    <div *ngIf="!load" class="d-flex justify-content-center">
+    <button mat-raised-button color="primary" (click)="seeBookings()">See Bookings</button></div>
+    <mat-horizontal-stepper></mat-horizontal-stepper>
+    <mat-divider></mat-divider>
+    <div class="my-2 display-flex justify-content-center" *ngIf="load">
+    <mat-spinner style="margin:0 auto;" *ngIf="isLoading"></mat-spinner>
+    <div *ngIf="!isLoading" class="d-flex justify-content-center justify-content-around flex-wrap flex-row gap-3">
+     <mat-card *ngFor="let item of bookings" style="width: 20rem; height: auto;" class="glow shadow rounded rounded-2">
+        <mat-card-header class="d-flex justify-content-start">
+          <mat-card-title><mat-icon>bookmark_border</mat-icon>{{item.showing.movie.title}}</mat-card-title>
+          <mat-card-subtitle><mat-icon>room</mat-icon>{{item.showing.theater.name}}</mat-card-subtitle>
+          <mat-card-subtitle class="my-1 p-1">Show Timing:<span class="text-primary p-1">{{item.showing.showTime}}<mat-icon>alarm</mat-icon></span></mat-card-subtitle>
+        </mat-card-header>
+        <img class="card-img-top" [src]="item.showing.movie.posterUrl">
+        <mat-card-content class="p-2 my-3 shadow-sm mx-1">
+            <div class="h6">Seats Booked: {{item.numSeats}}</div>
+            <div class="h6">Ticket Status: 
+                <span [ngStyle]="{'color': item.status == 'CONFIRM' ? 'green':'red'}">{{item.status}}
+                    <div [ngStyle]="{'background-color': item.status == 'CONFIRM' ? 'green':'red'}" class="spinner-grow spinner-grow-sm text-success"></div>
+                </span></div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="warn">Request Cancel</button>
+        </mat-card-actions>
+      </mat-card>
+      </div>
+    </div>
+</div>

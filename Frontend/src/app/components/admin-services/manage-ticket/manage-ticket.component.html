@@ -1,0 +1,43 @@
+<app-progress-spinner *ngIf="isLoading"></app-progress-spinner>
+<mat-card *ngIf="!isLoading" class="manage-ticket-container">
+  <mat-card-header class="manage-ticket-header">
+    <mat-card-title class="manage-ticket-title"
+      >Update Ticket Status</mat-card-title
+    >
+  </mat-card-header>
+  <mat-card-content class="manage-ticket-content">
+    <form [formGroup]="ticketStatusForm" (ngSubmit)="updateTicketStatus()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ticket ID</mat-label>
+        <input matInput formControlName="ticketId" required />
+        <mat-error
+          *ngIf="ticketStatusForm.get('ticketId')!.hasError('required')"
+          >Ticket Id is required</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Ticket Status</mat-label>
+        <mat-select formControlName="ticketStatus" required>
+          <mat-option value="CONFIRM">Confirm</mat-option>
+          <mat-option value="ON HOLD">On Hold</mat-option>
+          <mat-option value="REJECTED">Rejected</mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="ticketStatusForm.get('ticketStatus')!.hasError('required')"
+          >Ticket status is required</mat-error
+        >
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    class="full-width"
+    (click)="updateTicketStatus()"
+  >
+    Update Status
+  </button>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,23 @@
+<div class="search-container">
+  <mat-form-field class="search-bar">
+    <input matInput placeholder="Search movies" [(ngModel)]="searchQuery" (input)="debouncing()"/>
+    <button mat-icon-button matSuffix>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+<app-progress-spinner *ngIf="isLoading"></app-progress-spinner>
+<div *ngIf="!isLoading" class="movie-list">
+  <div *ngFor="let movie of filteredMovies" class="movie-card">
+    <a [routerLink]="'/details/' + movie.id"></a>
+    <img class="movie-poster" src="{{ movie.posterUrl }}" />
+    <div class="movie-details">
+      <div class="movie-title">{{ movie.title }}</div>
+      <div class="movie-genre">{{ movie.genre }}</div>
+      <div class="movie-rating">
+        <mat-icon>star</mat-icon>
+        <span>{{ movie.rating }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,119 @@
+<app-progress-spinner *ngIf="isLoading"></app-progress-spinner>
+<mat-card *ngIf="!isLoading" class="sign-up-card">
+  <mat-card-header class="sign-up-header">
+    <mat-card-title class="sign-up-title my-1"><mat-icon>perm_identity</mat-icon>Sign Up</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="sign-up-content">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>First Name</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Enter your first name"
+            id="firstName"
+            formControlName="firstName"
+          />
+          <mat-error *ngIf="firstName?.errors?.['required']"
+            >First Name is required</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Last Name</mat-label>
+          <input
+            matInput
+            type="text"
+            placeholder="Enter your last name"
+            id="lastName"
+            formControlName="lastName"
+          />
+          <mat-error *ngIf="lastName?.errors?.['required']"
+            >Last Name is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="Enter your email"
+          id="email"
+          formControlName="email"
+        />
+        <mat-error *ngIf="email?.errors?.['required']"
+          >Email is required</mat-error
+        >
+        <mat-error *ngIf="email?.errors?.['email']">Invalid email</mat-error>
+      </mat-form-field>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="Enter your password"
+            id="password"
+            formControlName="password"
+          />
+          <mat-error *ngIf="password?.errors?.['required']"
+            >Password is required</mat-error
+          >
+          <mat-error *ngIf="password?.errors?.['minlength']"
+            >Password must be at least 8 characters long.</mat-error
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Confirm Password</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="Confirm your password"
+            id="confirmedPassword"
+            formControlName="confirmedPassword"
+          />
+          <mat-error *ngIf="confirmedPassword?.errors?.['required']"
+            >Confirm Password is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Security Question</mat-label>
+        <mat-select
+          id="secretQuestionId"
+          formControlName="secretQuestionId"
+          placeholder="Select a security question"
+        >
+          <mat-option *ngFor="let q of securityQuestions" [value]="q.id">{{
+            q.question
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Answer</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Enter your answer"
+          id="answerToSecretQuestion"
+          formControlName="answerToSecretQuestion"
+        />
+        <mat-error *ngIf="answerToSecretQuestion?.errors?.['required']"
+          >Answer is required</mat-error
+        >
+      </mat-form-field>
+
+      <button [disabled]="!this.signupForm.valid"  class="full-width btn btn-outline-success shadow-sm">
+        Sign Up
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

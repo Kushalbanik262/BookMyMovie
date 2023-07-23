@@ -1,0 +1,8 @@
+scrape_configs:
+  - job_name: 'Ticket Booking Service input'
+    metrics_path: '/api/v1.0/moviebooking/actuator/prometheus'
+    scrape_interval: 3s
+    static_configs:
+      - targets: ['localhost:8083']
+        labels:
+          application: 'Ticket Booking Service'

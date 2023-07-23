@@ -1,0 +1,31 @@
+<app-progress-spinner *ngIf="isLoading"></app-progress-spinner>
+<div class="manage-movies-page" *ngIf="!isLoading">
+  <div class="add-movie-button-container">
+    <h2>Manage Movies</h2>
+    <button mat-raised-button color="primary" routerLink="/admin/addMovie">
+      Add Movie
+    </button>
+  </div>
+  <div class="movie-list">
+    <div class="movie-card" *ngFor="let movie of movies">
+      <div class="movie-info">
+        <div class="poster-container">
+          <img src="{{ movie.posterUrl }}" alt="{{ movie.title }} Poster" />
+        </div>
+        <div class="details-container">
+          <h3>{{ movie.title }}</h3>
+          <p><strong>Genre:</strong> {{ movie.genre }}</p>
+          <p><strong>Rating:</strong> {{ movie.rating }}</p>
+          <p><strong>Language:</strong> {{ movie.language }}</p>
+          <p><strong>Release Date:</strong> {{ movie.releaseDate }}</p>
+          <p><strong>Runtime:</strong> {{ movie.runtime }}</p>
+        </div>
+      </div>
+      <div class="button-container">
+        <button mat-icon-button color="warn" (click)="deleteMovie(movie.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

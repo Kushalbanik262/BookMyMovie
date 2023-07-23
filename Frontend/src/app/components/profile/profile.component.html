@@ -1,0 +1,116 @@
+<mat-card class="profile-card" *ngIf="!updateFlag">
+  <mat-card-header class="profile-header">
+    <mat-icon>face</mat-icon>
+    <mat-card-title class="profile-title">My Profile</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="profile-content">
+    <div class="profile-info">
+      <div class="profile-field">
+        <span class="profile-label">User ID:</span>
+        <span class="profile-value">{{ userId }}</span>
+      </div>
+
+      <div class="profile-field">
+        <span class="profile-label">First Name:</span>
+        <span class="profile-value">{{ firstName }}</span>
+      </div>
+
+      <div class="profile-field">
+        <span class="profile-label">Last Name:</span>
+        <span class="profile-value">{{ lastName }}</span>
+      </div>
+
+      <div class="profile-field">
+        <span class="profile-label">Email:</span>
+        <span class="profile-value">{{ email }}</span>
+      </div>
+
+      <div class="profile-field">
+        <span class="profile-label">Role:</span>
+        <span class="profile-value">{{ role }}</span>
+      </div>
+    </div>
+
+    <button  class="update-password-btn btn btn-outline-danger shadow-sm" (click)="updatePassword()">
+      Update Password
+    </button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="updateFlag" class="update-card">
+  <mat-card-header class="bg-success rounded-1">
+  <mat-card-title class="text-light">
+    <mat-icon>verified_user</mat-icon>
+    Update Password</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="forgot-password-content shadow">
+    <form [formGroup]="updatePasswordForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>User ID</mat-label>
+        <input
+          readonly
+          matInput
+          type="text"
+          placeholder="Enter your user ID"
+          id="userId"
+          formControlName="userId"
+        />
+        <mat-error *ngIf="formUserId?.errors?.['required']" class="error"
+          >User Id is required</mat-error
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Security Question</mat-label>
+        <mat-select
+          id="securityQuestionId"
+          formControlName="securityQuestionId"
+          placeholder="Select a security question"
+        >
+          <mat-option *ngFor="let q of securityQuestions" [value]="q.id">{{
+            q.question
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Answer</mat-label>
+        <input
+          matInput
+          type="text"
+          placeholder="Enter your answer"
+          id="answer"
+          formControlName="answer"
+        />
+        <mat-error *ngIf="answer?.errors?.['required']" class="error"
+          >Answer is required</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>New password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Enter your new password"
+          id="newPassword"
+          formControlName="newPassword"
+        />
+        <mat-error *ngIf="newPassword?.errors?.['required']" class="error"
+          >Password is required</mat-error
+        >
+        <mat-error *ngIf="newPassword?.errors?.['minlength']" class="error"
+          >Password must be at least 8 characters long.</mat-error
+        >
+      </mat-form-field>
+
+      <button [disabled]="!this.updatePasswordForm.valid" mat-raised-button color="warn" class="full-width">
+        Update
+      </button>
+    </form>
+    </mat-card-content>
+    <mat-card-footer *ngIf="isLoading">
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+</mat-card>

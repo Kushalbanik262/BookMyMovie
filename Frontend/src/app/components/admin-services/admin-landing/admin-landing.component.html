@@ -1,0 +1,19 @@
+<div class="main mx-2 my-3">
+    <div class="h1 text-center">
+        <mat-icon>fingerprint</mat-icon>
+        Hi Admin <span class="text-success">{{user.firstName}} {{user.lastName}}!</span></div>
+</div>
+
+<div class="card mx-4">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title class="text-success h6"><mat-icon>dashboard</mat-icon>Admin Actions</mat-card-title>
+            <mat-card-subtitle>Do Actions Based on Your Previledge</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="d-flex justify-content-center">
+           <button mat-raised-button color="primary" routerLink="addMovie" class="actions">Add New Movie</button>
+           <button mat-raised-button color="accent" routerLink="manageMovie" class="actions">Manage Exising Movie</button>
+           <button mat-raised-button color="warn" routerLink="manageTicket"   class="actions">Manage Tickets</button>
+        </mat-card-content>
+    </mat-card>
+</div>

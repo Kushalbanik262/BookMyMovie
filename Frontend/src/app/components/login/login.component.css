@@ -1,0 +1,46 @@
+.login-card {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  margin-top: 80px;
+}
+
+.login-header {
+  background-color: blueviolet;
+  color: #fff;
+
+}
+
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: auto;
+}
+
+.login-content {
+  padding: 24px;
+}
+
+.forgot-password {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  color: #3f51b5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.signup-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signup-link a {
+  color: #f44336;
+  text-decoration: none;
+  font-weight: bold;
+}

@@ -1,0 +1,209 @@
+<app-progress-spinner *ngIf="isLoading"></app-progress-spinner>
+<mat-card *ngIf="!isLoading" class="add-movie-card">
+  <mat-card-header class="add-movie-header">
+    <mat-card-title class="add-movie-title">Add Movie</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="add-movie-content">
+    <form class="add-movie-form" (ngSubmit)="submitMovieForm()">
+      <mat-form-field class="add-movie-field">
+        <mat-label>Title</mat-label>
+        <input
+          matInput
+          placeholder="Title"
+          [(ngModel)]="addMovieRequest.title"
+          name="title"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea
+          matInput
+          placeholder="Description"
+          [(ngModel)]="addMovieRequest.description"
+          name="description"
+          required
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Runtime</mat-label>
+        <input
+          matInput
+          placeholder="Runtime"
+          [(ngModel)]="addMovieRequest.runtime"
+          name="runtime"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Release Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="releaseDatepicker"
+          placeholder="Release Date"
+          [(ngModel)]="addMovieRequest.releaseDate"
+          name="releaseDate"
+          required
+        />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="releaseDatepicker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #releaseDatepicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Genre</mat-label>
+        <input
+          matInput
+          placeholder="Genre"
+          [(ngModel)]="addMovieRequest.genre"
+          name="genre"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Language</mat-label>
+        <input
+          matInput
+          placeholder="Language"
+          [(ngModel)]="addMovieRequest.language"
+          name="language"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Country</mat-label>
+        <input
+          matInput
+          placeholder="Country"
+          [(ngModel)]="addMovieRequest.country"
+          name="country"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Director</mat-label>
+        <input
+          matInput
+          placeholder="Director"
+          [(ngModel)]="addMovieRequest.director"
+          name="director"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Cast</mat-label>
+        <input
+          matInput
+          placeholder="Cast"
+          [(ngModel)]="addMovieRequest.cast"
+          name="cast"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Rating</mat-label>
+        <input
+          matInput
+          placeholder="Rating"
+          [(ngModel)]="addMovieRequest.rating"
+          name="rating"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Poster URL</mat-label>
+        <input
+          matInput
+          placeholder="Poster URL"
+          [(ngModel)]="addMovieRequest.posterUrl"
+          name="posterUrl"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Trailer URL</mat-label>
+        <input
+          matInput
+          placeholder="Trailer URL"
+          [(ngModel)]="addMovieRequest.trailerUrl"
+          name="trailerUrl"
+          required
+        />
+      </mat-form-field>
+
+      <div class="theater-section">
+        <h4>Add Theaters</h4>
+        <div
+          class="theater"
+          *ngFor="let theater of addMovieRequest.shows; let i = index"
+        >
+          <mat-label>Theater</mat-label>
+          <mat-form-field class="add-movie-field">
+            <mat-label>Theater</mat-label>
+            <mat-select
+              [(ngModel)]="theater.theaterId"
+              name="theaterId{{ i }}"
+              required
+            >
+              <mat-option
+                *ngFor="let theater of availableTheaters"
+                [value]="theater.id"
+              >
+                {{ theater.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="add-movie-field">
+            <mat-label>Total Seats</mat-label>
+            <input
+              matInput
+              placeholder="Seats"
+              [(ngModel)]="theater.totalSeats"
+              name="seats{{ i }}"
+              required
+            />
+          </mat-form-field>
+
+          <mat-form-field class="add-movie-field">
+            <mat-label>Show time. Ex: 7PM</mat-label>
+            <input
+              matInput
+              placeholder="Showtime"
+              [(ngModel)]="theater.showTime"
+              name="showtime{{ i }}"
+              required
+            />
+          </mat-form-field>
+
+          <button mat-icon-button color="warn" (click)="removeTheater(i)">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="addTheater()"
+        >
+          Add Theater
+        </button>
+      </div>
+
+      <button mat-raised-button color="primary" type="submit" class="submit-button">Submit</button>
+    </form>
+  </mat-card-content>
+</mat-card>

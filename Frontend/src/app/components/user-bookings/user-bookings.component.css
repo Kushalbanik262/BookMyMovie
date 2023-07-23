@@ -1,0 +1,10 @@
+.header{
+    margin-top: 3px;
+    margin:0 auto;
+   
+}
+
+.glow:hover{
+    transform: scale(1.05);
+    box-shadow: 0 0 13px rgba(0, 0, 0, 0.3);
+}

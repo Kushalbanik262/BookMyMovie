@@ -1,0 +1,22 @@
+.header-logo {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+ 
+}
+
+.header-spacer {
+  flex: 1 1 auto;
+}
+
+.header{
+  background-image: url('https://inc42.com/wp-content/uploads/2021/06/F4-Feature-1.jpg');
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
+  box-shadow: 0px 0px 10px black;
+}
+
+#loginbtn{
+  box-shadow: 0px 1px 6px rgb(93, 239, 241);
+}

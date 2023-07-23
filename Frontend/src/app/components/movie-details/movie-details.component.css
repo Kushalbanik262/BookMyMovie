@@ -1,0 +1,83 @@
+
+.loader{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2px;
+    border-radius: 3px;
+    background-color: black;
+}
+
+.title{
+    text-align: center;
+    color: rgb(5, 3, 3);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.trailer{
+    display: flex;
+    justify-content: center;
+}
+
+.hlight{
+    box-shadow: 0px 1px 6px white;
+    padding: 3px;
+}
+
+.hlight:hover{
+    transform: scale(1.07);
+    box-shadow: 0 0 10px rgb(253, 252, 252);
+}
+
+.details{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin:2px 2px;
+    gap: 10px;
+}
+
+.show-header{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 6px;
+    padding: 2px;
+    justify-content: space-around;
+    margin:3px 2px;
+}
+
+.example-card {
+    max-width: 400px;
+  }
+  
+  button{
+    margin: 2px 3px;
+  }
+
+  .seat-all{
+  }
+
+  .cinema-screen{
+    box-shadow: 0px 1px 8px greenyellow;
+    text-align: center;
+    padding: 3px;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: black;
+  }
+
+  .showtime{
+    text-align: center;
+    color: green;
+  }

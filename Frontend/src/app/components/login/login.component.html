@@ -1,0 +1,54 @@
+<app-progress-spinner *ngIf="isLoading"></app-progress-spinner>
+<mat-card *ngIf="!isLoading" class="login-card rounded-3 shadow">
+  <mat-card-header class="login-header rounded-3 p-3">
+    <mat-card-title class="login-title">
+      <mat-icon>supervisor_account</mat-icon>Login
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content class="login-content">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width my-1">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="email"
+          placeholder="Enter your email"
+          id="email"
+          formControlName="email"
+        />
+        <mat-error *ngIf="email?.errors?.['required']" class="my-1"
+          >Email is required</mat-error
+        >
+        <mat-error *ngIf="email?.errors?.['email']" class="my-2">Invalid email</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width my-2">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Enter your password"
+          id="password"
+          formControlName="password"
+        />
+        <mat-error *ngIf="password?.errors?.['required']"
+          >Password is required</mat-error
+        >
+        <mat-error *ngIf="password?.errors?.['minlength']"
+          >Password must be at least 8 characters long.</mat-error
+        >
+      </mat-form-field>
+      <div class="d-flex justify-content-between">
+      <button mat-raised-button class="full-width btn-success">Login</button>
+      <div class="forgot-password">
+        <a routerLink="forgot-password">Forgot password?</a>
+      </div>
+    </div>
+    </form>
+
+    <div class="signup-link">
+      Don't have an account? <a routerLink="signup">Sign Up</a>
+    </div>
+  </mat-card-content>
+</mat-card>

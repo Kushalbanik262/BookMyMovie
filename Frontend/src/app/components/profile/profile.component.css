@@ -1,0 +1,77 @@
+.profile-card {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  margin-top: 80px;
+}
+
+.update-card{
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 80px;
+}
+
+.profile-header {
+  background-color: #4c36f4;
+  color: #fff;
+}
+
+.profile-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.profile-content {
+  padding: 24px;
+}
+
+.profile-info {
+  margin-bottom: 24px;
+}
+
+.profile-field {
+  margin-bottom: 16px;
+}
+
+.profile-label {
+  font-weight: bold;
+}
+
+.profile-value {
+  margin-left: 8px;
+}
+
+.update-password-btn {
+  width: 100%;
+}
+
+
+.forgot-password-card {
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: #fff;
+  margin-top: 80px;
+}
+
+.forgot-password-header {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.forgot-password-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.forgot-password-content {
+  padding: 24px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.error{
+  margin-top: 1px;
+  margin-bottom: 1px;
+}

@@ -1,0 +1,27 @@
+<mat-toolbar color="primary" class="header">
+  <span class="header-logo" routerLink="home" id="main">
+    <mat-icon>bookmark_border</mat-icon>BookMyMovie
+  </span>
+  <span class="header-spacer"></span>
+  <button
+  id="loginbtn"
+    class="btn btn-outline-light"
+    *ngIf="!isLoggedIn"
+    routerLink="login"
+    color="accent"
+    style="background-image: url('https://cdn-icons-png.flaticon.com/512/6681/6681204.png');"
+    >
+    Login
+  </button>
+
+  <!-- Profile Dropdown -->
+  <button mat-icon-button *ngIf="isLoggedIn" [matMenuTriggerFor]="profileMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+  <mat-menu #profileMenu="matMenu">
+    <button mat-menu-item routerLink="login/profile">Profile</button>
+    <button mat-menu-item *ngIf="!isAdmin" [routerLink]="routerLink">My Bookings</button>
+    <button mat-menu-item *ngIf="isAdmin" routerLink="/admin">Admin service</button>
+    <button mat-menu-item (click)="onLogout()">Logout</button>
+  </mat-menu>
+</mat-toolbar>

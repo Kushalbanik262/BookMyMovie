@@ -1,0 +1,26 @@
+[
+    {
+        "id":"MT1565cd96-3fd2-4f0e-a203-485abdfb2937",
+        "movie":"M28d95dfe-974c-4462-bc40-44650c185cf6",
+        "theater":"T2b764eb8-7b5c-4e86-a119-d10734dfcc77",
+        "show_time":"7:15PM",
+        "total_seats":110.0,
+        "booked_seats":0
+    },
+    {
+        "id":"MT44dcc53d-a33e-42b1-ad81-17f03d2774a5",
+        "movie_id":"M28d95dfe-974c-4462-bc40-44650c185cf6",
+        "theater_id":"T82326e44-37b4-4e10-8b63-41904a6eacc8",
+        "show_time":"2:00PM",
+        "total_seats":70.0,
+        "booked_seats":0
+    },
+    {
+        "id":"MT302376dc-5f04-4b28-af01-f8f9477c6ece",
+        "movie_id":"M3c056f1b-d2b8-4f3e-9a6b-f0ca0e8e51af",
+        "theater_id":"T82326e44-37b4-4e10-8b63-41904a6eacc8",
+        "show_time":"5:00PM",
+        "total_seats":100.0,
+        "booked_seats":0
+    }
+]

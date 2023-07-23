@@ -1,0 +1,118 @@
+<div *ngIf="isLoading" class="loader">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div class="main mx-1 my-2" *ngIf="!isLoading">
+    <div class="title" [ngStyle]="{'background-image': 'url(' + movie.posterUrl + ')'}">
+        <div class="h1 text-light shadow-lg"><mat-icon>movie</mat-icon>{{movie.title}}</div>
+    </div>
+    <div class="trailer my-2 shadow-sm">
+        <iframe 
+        class=""
+        width="80%" 
+        height="315px" 
+        [src]="makeUrlSafe(movie.trailerUrl)" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen></iframe>
+    </div>
+    <div class="details">
+    <div class="d-flex justify-content-around my-1 flex-wrap p-2 hlight">
+        <div class="text-light">Description</div>
+        <div class="text-danger p-2">{{movie.description}}</div>
+    </div>
+    <div class="d-flex justify-content-around flex-wrap my-2 hlight ">
+        <div class="text-light"><mat-icon>date_range</mat-icon>Release Date </div>
+        <div class="text-success p-3">{{movie.releaseDate}}</div>  
+    </div>
+    <div class="d-flex justify-content-around flex-wrap my-2 hlight ">
+        <div class="text-light"><mat-icon>query_builder</mat-icon>Runtime:</div>
+        <div class="text-success p-3">{{movie.runtime}} Mins</div>  
+    </div>
+    <div class="d-flex justify-content-around flex-wrap my-2 hlight">
+        <div class="text-light"><mat-icon>query_builder</mat-icon>Genre:</div>
+        <div class="text-success p-3">{{movie.genre}}</div>  
+    </div>
+
+    <div class="d-flex justify-content-around flex-wrap m-2 hlight">
+        <div class="text-light"><mat-icon>language</mat-icon>Language:</div>
+        <div class="text-success p-3">{{movie.language}}</div>  
+    </div>
+
+    <div class="d-flex justify-content-around flex-wrap m-2 hlight">
+        <div class="text-light"><mat-icon>room</mat-icon>Country:</div>
+        <div class="text-success p-3">{{movie.country}}</div>  
+    </div>
+
+    <div class="d-flex justify-content-around flex-wrap m-2 hlight">
+        <div class="text-light"><mat-icon>record_voice_over</mat-icon>Director:</div>
+        <div class="text-success p-3">{{movie.director}}</div>  
+    </div>
+
+    <div class="d-flex justify-content-around flex-wrap m-2 hlight">
+        <div class="text-light"><mat-icon>videocam</mat-icon>Cast:</div>
+        <div class="text-success p-3">{{movie.cast}}</div>  
+    </div>
+
+    <div class="d-flex justify-content-around flex-wrap m-2 hlight">
+        <div class="text-light"><mat-icon>stars</mat-icon>Rating:</div>
+        <div class="text-success p-3">{{movie.rating}}</div>  
+    </div>
+ </div>
+</div>
+<h2 class="text-center text-success my-2">Shows Available</h2>
+<div class="show-header">
+    <mat-card class="example-card shadow-lg my-3 rounded-1 p-1" *ngFor="let sh of shows">
+        <mat-card-header class="my-1">
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title-group class="my-3">
+          <mat-card-title class="text-info"><mat-icon>verified_user</mat-icon>{{sh.name}}</mat-card-title>
+          <mat-card-title class="text-warning d-flex justify-content-around flex-column p-3 shadow rounded-2">
+            <div><mat-icon>new_releases</mat-icon>Availible Seats {{sh.totalSeats - sh.bookedSeats}}
+                <div class="spinner-grow spinner-grow-sm bg-danger"></div>
+            </div>
+            <div class="text-primary"><mat-icon>watch_later</mat-icon>Show Time {{sh.showTime}}</div>
+        </mat-card-title>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content class="bg-dark rounded-1 p-1">
+          <p class="shadow-sm">
+            <span class="text-primary mx-1">
+                <mat-icon>room</mat-icon>Location:</span> <span class="text-light">{{sh.location}}</span>
+          </p>
+        </mat-card-content>
+        <mat-card-actions class="d-flex justify-content-center p-2 mt-3">
+          <button mat-fab color="primary">More Info</button>
+          <button mat-fab color="accent" *ngIf="isLoggedIn()" (click)="getAvailableSeats(sh)" data-bs-toggle="modal" [attr.data-bs-target]="'#'+sh.id"> <mat-icon>bookmark</mat-icon></button>
+           
+          <div *ngIf="isLoggedIn()" class="modal fade " [id]="sh.id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5 p-2 text-center shadow text-info" id="exampleModalLabel">
+                    <mat-icon>room</mat-icon>
+                    {{sh.name}}</h1>
+                  <div class="showtime">
+                    <mat-icon>alarm</mat-icon>
+                    {{sh.showTime}}
+                  </div>
+                </div>
+                <div class="modal-body bg-dark">
+                    <div style="font-weight: bold;" class="h4 text-center text-light mb-2"><mat-icon>event_seat</mat-icon>Seat Plan</div>
+                        <button [disabled]="item == -1" [ngStyle]="{'background-color': (item == -1) ? 'red':''}" (click)="reserveSeat(i)"  *ngFor="let item of seats;let i = index" name="seat-all"  type="checkbox" class="btn btn-light" data-bs-toggle="button">{{i + 1}}</button>
+                    <mat-card class="mt-2">
+                        <div class="cinema-screen"><mat-icon>aspect_ratio</mat-icon> Please Keep Your Eyes Here!</div>
+                    </mat-card>
+                </div>
+                <div class="modal-footer">
+                  <button [disabled]="getUserPriviledge() == 'ADMIN'" type="button" (click)="book(sh)" data-bs-dismiss="modal" class="btn btn-primary"><mat-icon>book</mat-icon>Confirm Booking</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+       
+        </mat-card-actions>
+      </mat-card>
+</div>

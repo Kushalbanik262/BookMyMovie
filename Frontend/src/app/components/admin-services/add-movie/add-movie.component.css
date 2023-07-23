@@ -1,0 +1,51 @@
+.add-movie-card {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.add-movie-header {
+  background-color: #f44336;
+  color: #fff;
+  padding: 16px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.add-movie-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.add-movie-content {
+  padding: 16px;
+}
+
+.add-movie-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-movie-field {
+  margin-bottom: 16px;
+}
+
+.theater-section {
+  margin-top: 24px;
+}
+
+.theater {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.submit-button{
+  margin-top: 10px;
+  align-self: flex-end;
+}
+
